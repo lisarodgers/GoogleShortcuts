@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Streamery Google Homepage",
+  "version": "1.0",
+  "description": "A new tab page with more shortcuts, custom backgrounds, and NASA's APOD.",
+  "permissions": [
+    "storage",  
+    "alarms"    
+  ],
+  "host_permissions": [
+    "https://api.nasa.gov/",         
+    "https://*.google.com/s2/"       
+    
+  ],
+  "chrome_url_overrides": {
+    "newtab": "new_tab.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

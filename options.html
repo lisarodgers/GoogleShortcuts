@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Homepage Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <h1>Settings</h1>
+
+    <section id="background-settings">
+        <h2>Background</h2>
+        <label><input type="radio" name="bgChoice" value="apod"> Use NASA Picture of the Day</label><br>
+        <label><input type="radio" name="bgChoice" value="custom"> Use Custom Background</label><br>
+        <div id="custom-bg-options" style="display:none; margin-left: 20px;">
+            <label for="customBgUrl">Image URL:</label>
+            <input type="url" id="customBgUrl" placeholder="https://example.com/image.jpg"><br>
+            <label for="customBgFile">Or Upload Image:</label>
+            <input type="file" id="customBgFile" accept="image/*"><br>
+            <img id="customBgPreview" src="#" alt="Preview" style="max-width: 200px; max-height:100px; display:none;">
+        </div>
+         <label for="fallbackColor">Fallback Solid Color (if APOD/Custom fails):</label>
+        <input type="color" id="fallbackColor" value="#202124"> <!-- Default dark gray -->
+    </section>
+
+    <section id="shortcut-settings">
+        <h2>Shortcuts (up to 30)</h2>
+        <div id="shortcuts-list">
+            <!-- Populated by options.js -->
+        </div>
+        <h3>Add New Shortcut</h3>
+        <input type="text" id="shortcutName" placeholder="Name (e.g., Gmail)">
+        <input type="url" id="shortcutUrl" placeholder="URL (e.g., https://mail.google.com)">
+        <button id="addShortcut">Add Shortcut</button>
+    </section>
+
+    <button id="saveSettings">Save Settings</button>
+    <p id="status" style="color:green;"></p>
+
+    <script src="options.js"></script>
+</body>
+</html>
