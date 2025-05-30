@@ -1,4 +1,4 @@
-const NASA_API_KEY = 'IRPLTJSVaxe4YiXQY0Qd920NVxCBmWbyvisWffOc'; // Replace with your actual key
+const NASA_API_KEY = 'yourAPIkeyHere'; // Replace with your actual key
 const APOD_API_URL = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
 const DEFAULT_FALLBACK_COLOR = '#202124'; // Dark gray
 
@@ -7,6 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSearch();
     setupOptionsLink();
 
+    // Handle Dynamic Apps dropdown toggle
+    const appsButton = document.getElementById('dynamic-apps');
+    const dropdown = document.getElementById('apps-dropdown');
+
+    if (appsButton && dropdown) {
+        appsButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('hidden');
+        });
+
+        // Optional: Close dropdown on outside click
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.apps-menu-wrapper')) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    }
 });
 
 function setDefaultBackground() {
