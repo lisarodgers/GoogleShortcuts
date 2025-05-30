@@ -6,7 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSettings();
     setupSearch();
     setupOptionsLink();
+
 });
+
+function setDefaultBackground() {
+   document.body.style.backgroundImage = 'none';
+  document.body.style.backgroundColor = '#1e1e1e'; // Any default color you prefer
+}
 
 function setupOptionsLink() {
     const optionsLink = document.getElementById('options-link');
@@ -24,7 +30,7 @@ async function loadSettings() {
         const { backgroundChoice, customBgUrl, customBgDataUrl, shortcuts = [], fallbackColor = DEFAULT_FALLBACK_COLOR } = data;
 
         // Set background
-        if (backgroundChoice === 'apod') {
+        if (backgroundChoice === 'apod'  && data.apiKey) {
             try {
                 const apodData = await getAPOD();
                 if (apodData && apodData.hdurl) {

@@ -1,5 +1,21 @@
 document.addEventListener('DOMContentLoaded', loadOptions);
 
+document.getElementById('saveApiKey').addEventListener('click', () => {
+  const apiKey = document.getElementById('apiKey').value;
+  chrome.storage.sync.set({ apiKey }, () => {
+    alert('API key saved!');
+  });
+});
+
+// Load the saved API key when options page is opened
+document.addEventListener('DOMContentLoaded', () => {
+  chrome.storage.sync.get('apiKey', (data) => {
+    if (data.apiKey) {
+      document.getElementById('apiKey').value = data.apiKey;
+    }
+  });
+});
+
 // Background choice interactivity
 const bgChoiceRadios = document.querySelectorAll('input[name="bgChoice"]');
 const customBgOptionsDiv = document.getElementById('custom-bg-options');

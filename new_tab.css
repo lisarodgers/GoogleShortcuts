@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,31 +9,37 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-color: #000000;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 1s ease-in-out;
 }
 
-.top-nav {
+.top-right-links {
     position: absolute;
     top: 15px;
     right: 15px;
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    z-index: 10;
 }
 
-.top-nav a {
-    margin-left: 15px;
-    color: #5f6368; /* Google's link color, adjust if background clashes */
+.top-right-links a {
+    color: #ffffff;
     text-decoration: none;
-    font-size: 13px;
+    font-weight: 500;
 }
-.top-nav a:hover {
+
+.top-right-links a:hover {
     text-decoration: underline;
 }
-#options-link {
-    font-size: 20px; /* Make gear icon larger */
-}
 
+#options-link {
+    font-size: 20px;
+    color: #ffffff;
+}
 
 .main-content {
     text-align: center;
