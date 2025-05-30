@@ -2,9 +2,15 @@ const NASA_API_KEY_BG = 'myapikeyhere'; // Replace with your actual key
 const APOD_API_URL_BG = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY_BG}`;
 
 chrome.runtime.onInstalled.addListener(() => {
-    console.log("Custom New Tab extension installed/updated.");
-    scheduleAPODFetch();
-    fetchAndCacheAPOD(); // Fetch immediately on install/update
+    console.log("Extension installed/updated.");
+    chrome.storage.sync.get(['backgroundChoice', 'apiKey'], (data) => {
+        if (data.backgroundChoice === 'apod' && data.apiKey) {
+            scheduleAPODFetch();
+            fetchAndCacheAPOD(data.apiKey); // ✅ pass user key
+        } else {
+            console.log("APOD not enabled or API key missing. Skipping APOD fetch.");
+        }
+    });
 });
 
 chrome.alarms.onAlarm.addListener(alarm => {
@@ -27,10 +33,11 @@ function scheduleAPODFetch() {
     });
 }
 
-async function fetchAndCacheAPOD() {
+async function fetchAndCacheAPOD(apiKey) {
     console.log("Background: Attempting to fetch and cache APOD.");
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
     try {
-        const response = await fetch(APOD_API_URL_BG);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -40,18 +47,15 @@ async function fetchAndCacheAPOD() {
             const apodDataToCache = {
                 date: data.date,
                 title: data.title,
-                url: data.hdurl || data.url, // Prefer HD URL
+                url: data.hdurl || data.url,
                 explanation: data.explanation
             };
             chrome.storage.local.set({ apodData: apodDataToCache }, () => {
-                console.log("APOD data fetched and cached successfully:", apodDataToCache);
+                console.log("APOD data fetched and cached:", apodDataToCache);
             });
         } else {
-            console.warn("Today's APOD is not an image, not caching:", data);
-            // Optionally, you could try fetching the previous day's image as a fallback here
-            // or clear the cache so the new_tab page knows to use its own fallback.
             chrome.storage.local.remove('apodData', () => {
-                console.log("Cleared APOD cache as today's content is not an image.");
+                console.log("Non-image APOD. Cache cleared.");
             });
         }
     } catch (error) {
