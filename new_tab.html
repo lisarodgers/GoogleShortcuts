@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Tab</title>
+    <link rel="stylesheet" href="new_tab.css">
+</head>
+<body>
+    <div class="top-nav">
+        <a href="https://mail.google.com">Gmail</a>
+        <a href="https://www.google.com/imghp">Images</a>
+        <a href="https://www.youtube.com">YouTube</a>
+        <!-- Add a link to your options page -->
+        <a href="#" id="options-link" title="Settings">⚙</a>
+    </div>
+
+    <div class="main-content">
+        <img src="google_logo.png" alt="Google Logo" id="google-logo">
+        <form id="search-form">
+            <input type="text" id="search-bar" title="Search">
+            <button type="submit">Search</button>
+        </form>
+
+        <div id="shortcuts-grid" class="shortcuts-container">
+            <!-- Shortcuts will be populated here by new_tab.js -->
+        </div>
+    </div>
+
+    <script src="new_tab.js"></script>
+</body>
+</html>
