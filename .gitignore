@@ -1,0 +1,31 @@
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+desktop.ini
+
+# Node.js (only if using build tools or npm)
+node_modules/
+npm-debug.log*
+
+# VS Code project settings (optional)
+.vscode/
+
+# Environment and API keys
+.env
+*.local
+
+# Log files
+*.log
+
+# Zip files you might export
+*.zip
+
+# Build artifacts (if you have a build process)
+dist/
+build/
+
+# Chrome extension packaging files
+*.crx
+*.pem
