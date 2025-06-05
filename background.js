@@ -1,4 +1,5 @@
-const NASA_API_KEY_BG = 'myapikeyhere'; // Replace with your actual key
+// Insert your NASA API key here. See README for details.
+const NASA_API_KEY_BG = 'YOUR_NASA_API_KEY';
 const APOD_API_URL_BG = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY_BG}`;
 
 chrome.runtime.onInstalled.addListener(() => {

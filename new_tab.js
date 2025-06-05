@@ -1,4 +1,5 @@
-const NASA_API_KEY = 'IRPLTJSVaxe4YiXQY0Qd920NVxCBmWbyvisWffOc'; // Replace with your actual key
+// Insert your NASA API key here. See README for details.
+const NASA_API_KEY = 'YOUR_NASA_API_KEY';
 const APOD_API_URL = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
 const DEFAULT_FALLBACK_COLOR = '#202124'; // Dark gray
 
